@@ -1,0 +1,7 @@
+MySQL:
+  host: localhost
+  username: root
+  password: password
+  database: Minecraft
+  port: 3306
+  table: minecraft_users
