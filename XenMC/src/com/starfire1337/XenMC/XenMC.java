@@ -1,7 +1,6 @@
 package com.starfire1337.XenMC;
 
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import org.bukkit.entity.Player;
@@ -47,26 +46,13 @@ public class XenMC extends JavaPlugin implements Listener{
 			@Override
 			public void run() {
 				try {
-					PreparedStatement ps = sql.prepare("SELECT ip FROM " + getConfig().getString("MySQL.table") + " WHERE uuid=?");
+					PreparedStatement ps = sql.prepare("INSERT INTO " + getConfig().getString("MySQL.table") + " (uuid, username, ip) VALUES (?, ?, ?) ON DUPLICATE KEY UPDATE username=?,ip=?");
 					ps.setString(1, uuid);
-					ResultSet rs = sql.query(ps);
-					int i = 0;
-					while(rs.next()) {
-						i++;
-					}
-					if(i == 0) {
-						ps = sql.prepare("INSERT INTO " + getConfig().getString("MySQL.table") + " (uuid, username, ip) VALUES (?, ?, ?)");
-						ps.setString(1, uuid);
-						ps.setString(2, name);
-						ps.setString(3, ip);
-						sql.query(ps);
-					} else {
-						ps = sql.prepare("UPDATE " + getConfig().getString("MySQL.table") + " SET uuid=?, username=?, ip=?");
-						ps.setString(1, uuid);
-						ps.setString(2, name);
-						ps.setString(3, ip);
-						sql.query(ps);
-					}
+					ps.setString(2, name);
+					ps.setString(3, ip);
+					ps.setString(4, name);
+					ps.setString(5, ip);
+					sql.query(ps);
 				} catch (SQLException e1) {
 					getLogger().info("Failed to excecute async MySQL query.");
 					getLogger().info(e1.getMessage());
