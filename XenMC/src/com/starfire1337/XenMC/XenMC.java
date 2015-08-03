@@ -45,6 +45,9 @@ public class XenMC extends JavaPlugin implements Listener{
 		getServer().getScheduler().runTaskAsynchronously(plugin, new Runnable() {
 			@Override
 			public void run() {
+				if(!sql.isConn()) {
+					sql.connect();
+				}
 				try {
 					PreparedStatement ps = sql.prepare("INSERT INTO " + getConfig().getString("MySQL.table") + " (uuid, username, ip) VALUES (?, ?, ?) ON DUPLICATE KEY UPDATE username=?,ip=?");
 					ps.setString(1, uuid);
