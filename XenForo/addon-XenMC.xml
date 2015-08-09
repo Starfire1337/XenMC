@@ -19,7 +19,7 @@
     <interface_groups/>
   </permissions>
   <phrases>
-    <phrase title="xenmc_username_invalid" version_id="0" version_string="1.0.3"><![CDATA[The validation token you have provided is not valid. Please check to make sure this is valid or get a new one by using /validate in-game.]]></phrase>
+    <phrase title="xenmc_username_invalid" version_id="0" version_string="1.0.3"><![CDATA[You must have joined the server at least once from this IP Address to register!]]></phrase>
   </phrases>
   <route_prefixes/>
   <style_properties/>
