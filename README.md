@@ -16,3 +16,4 @@ Verify the addon is working by logging on to the server, then registering for an
 
 ### Notes
 * Currently, the addon will not process name changes, so those must be done manually
+* You MUST have mod_cloudflare installed if you are using Cloudflare! Otherwise, no one will be able to register!
